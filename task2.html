@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculations</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <style>
+      html, body {
+      display: flex;
+      justify-content: center;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 15px;
+      }
+
+      .cont {
+      border: 5px solid #f1f1f1;
+      min-width: 400px
+      }
+
+      input[type=text], input[type=password] {
+      width: 100%;
+      padding: 16px 8px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      }
+
+      button {
+      background-color: #8ebf42;
+      color: white;
+      padding: 14px 0;
+      margin: 10px 0;
+      border: none;
+      cursor: grabbing;
+      width: 100%;
+      }
+
+      h1 {
+      text-align:center;
+      font-size:18;
+      }
+
+      button:hover {
+      opacity: 0.8;
+      }
+
+      .formcontainer {
+      text-align: left;
+      margin: 24px 50px 12px;
+      }
+
+      .container {
+      padding: 16px 0;
+      text-align:left;
+      background: white
+      }
+
+      span.psw {
+      float: right;
+      padding-top: 0;
+      padding-right: 15px;
+      }
+      /* Change styles for span on extra small screens */
+      @media screen and (max-width: 300px) {
+        span.psw {
+        display: block;
+        float: none;
+        }
+      }
+
+      .name {
+        height: 50px !important;
+        border-radius: 3px !important;
+        width: 65px !important;
+        text-align: center !important;
+        border: solid 1px #8ebf42;
+      }
+
+      .opratn {
+        height: 50px !important;
+        border-radius: 3px !important;
+        width: 85px !important;
+        text-align: center !important;
+        border: solid 1px #8ebf42;
+      }
+
+
+      .name:hover {
+        height: 50px !important;
+        border-radius: 3px !important;
+        width: 65px !important;
+        text-align: center !important;
+        border: solid 2px #8ebf42;
+      }
+
+      .opratn:hover {
+        height: 50px !important;
+        border-radius: 3px !important;
+        width: 85px !important;
+        text-align: center !important;
+        border: solid 1px #8ebf42;
+      }
+    </style>
+  
+  <script>
+        
+      var ansD = 0
+      async function add(val1, val2, opr, opr_new) { 
+        var ansD = await +val1 + +val2
+        return ansD
+      }
+
+      async function divide(val1, val2, opr, opr_new) { 
+        var ansD = await val1 / val2
+        return ansD
+      }
+
+      async function multiply(val1, val2, opr, opr_new) { 
+        var ansD = await val1 * val2
+        return ansD
+      }
+
+      async function subtract(val1, val2, opr, opr_new) { 
+        var ansD = await val1 - val2
+        return ansD
+      }
+             
+      async function getAnswer(){
+        var val1 = await Number(document.getElementById('value1').value);
+        var val2 = await Number(document.getElementById('value2').value);
+        var opr = await document.getElementById('operation').value;
+        var opr_new = await opr.toLowerCase();
+        if(opr_new === '+' || opr_new === 'plus' || opr_new === 'add'){
+          var answer = await add(val1, val2, opr, opr_new)
+          document.getElementById('answer').innerHTML  = await answer
+        }
+        else if(opr_new === '/' || opr_new === 'divide' || opr_new === 'by'){
+          var answer = await divide(val1, val2, opr, opr_new)
+          document.getElementById('answer').innerHTML  = await answer
+        }
+        else if(opr_new === '*' || opr_new === 'multiply'){
+          var answer = await multiply(val1, val2, opr, opr_new)
+          document.getElementById('answer').innerHTML  = await answer
+        }
+
+        else if(opr_new === '-' || opr_new === 'minus' || opr_new === 'subtract'){
+          var answer = await subtract(val1, val2, opr, opr_new)
+          document.getElementById('answer').innerHTML  = await answer
+        }
+
+        else {
+          alert('Sorry, Operation cannot be performed. Ensure the operator is valid and the fields are appropiately field')
+        }
+      }
+
+     </script>
+  </head>
+  <body>
+    <div class="cont">
+
+      <h1 style="margin: 4%">Calculations</h1>
+      <div class="formcontainer">
+      <hr/>
+        <div style="text-align: center !important">
+            <input class="name" type="number" id="value1" name="value1" value="" placeholder="2" />
+            <input class="opratn" type="text" id="operation" name="operation" value="" placeholder="+ / add" />
+            <input class="name" type="number" id="value2" name="value2" value="" /> = <span  id="answer" style="font-size: 25px; margin-top: 12px !important; color: rgb(32, 32, 32)"> </span>
+        </div>
+
+
+      <button type="submit" onclick="getAnswer()">Calculate</button>
+
+ 
+             <!-- <div id="answer" style="font-size: 25px"> </div> -->
+
+    </div>
+
+    <a href="task3.html"> <button style="background-color: rgb(19, 18, 18)" type="submit">NEXT PAGE</button> </a>
+
+    <a href="task1.html"> <button style="background-color: rgb(19, 18, 18)" type="submit">GO BACK</button> </a>
+
+
+  </body>
+</html>
